@@ -1,0 +1,177 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      6524,        168]
+NotebookOptionsPosition[      6048,        146]
+NotebookOutlinePosition[      6405,        162]
+CellTagsIndexPosition[      6362,        159]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"wordNum", " ", "=", " ", "32"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"wordPool", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"DictionaryLookup", "[", 
+      RowBox[{"{", 
+       RowBox[{"\"\<English\>\"", ",", "___"}], "}"}], "]"}], "~", "Select", 
+     "~", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"4", "\[LessEqual]", 
+        RowBox[{"StringLength", "@", "#"}], "\[LessEqual]", "7"}], "&"}], 
+      ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", "Filter", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"wordPool", " ", "=", " ", 
+   RowBox[{"wordPool", "~", "Select", "~", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"LowerCaseQ", "@", 
+       RowBox[{"StringTake", "[", 
+        RowBox[{"#", ",", "1"}], "]"}]}], "&"}], ")"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"wordlist", " ", "=", " ", 
+   RowBox[{"RandomChoice", "[", 
+    RowBox[{"wordPool", ",", "wordNum"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"StringJoin", "[", 
+  RowBox[{"Riffle", "[", 
+   RowBox[{"wordlist", ",", "\"\<,\>\""}], "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.6319539908125*^9, 3.6319542051875*^9}, {
+  3.631954523515625*^9, 3.6319545616875*^9}, {3.6327101485904408`*^9, 
+  3.6327102481162357`*^9}, {3.6327103400725594`*^9, 3.63271036557961*^9}, {
+  3.632710399884921*^9, 3.632710438121271*^9}, {3.632712873323729*^9, 
+  3.632712873861926*^9}}],
+
+Cell[BoxData["\<\"slewing,stencil,stinky,reverts,partly,courted,cuffed,crimes,\
+fool,medley,revolve,comedic,poorboy,sevens,casual,lactate,puce,shebang,\
+condors,blooped,shamans,gramme,rugs,guesser,decks,moses,sissier,fans,packet,\
+titers,space,gator\"\>"], "Output",
+ CellChangeTimes->{3.632710336512899*^9, 3.632710401353609*^9, 
+  3.632710438770253*^9, 3.632712874452611*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"getDefinition", "[", 
+   RowBox[{"x_", "\[Rule]", "y_"}], "]"}], ":=", "y"}]], "Input",
+ CellChangeTimes->{{3.6319550975625*^9, 3.631955209265625*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"getDefinition", "/@", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"WordData", "[", 
+       RowBox[{"#", ",", "\"\<Definitions\>\""}], "]"}], 
+      "\[LeftDoubleBracket]", "1", "\[RightDoubleBracket]"}], "&"}], "/@", 
+    "wordlist"}], ")"}]}]], "Input",
+ CellChangeTimes->{{3.6319548163125*^9, 3.6319548354375*^9}, {
+  3.6319549239375*^9, 3.6319549549375*^9}, {3.63195513484375*^9, 
+  3.6319551440625*^9}, {3.631955194453125*^9, 3.631955222140625*^9}, {
+  3.631955318453125*^9, 3.631955414953125*^9}, {3.63195546034375*^9, 
+  3.631955493984375*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"Pope and father of Cesare Borgia and Lucrezia Borgia \
+(1431-1503)\"\>", ",", 
+   RowBox[{"getDefinition", "[", "\<\"additively\"\>", "]"}], 
+   ",", "\<\"interjection\"\>", 
+   ",", "\<\"ten-armed oval-bodied cephalopod with narrow fins as long as the \
+body and a large calcareous internal shell\"\>", 
+   ",", "\<\"the sustainer; a Hindu divinity worshipped as the preserver of \
+worlds\"\>", ",", "\<\"ruined in character or quality\"\>", 
+   ",", "\<\"devote (oneself) fully to\"\>", ",", 
+   RowBox[{"getDefinition", "[", "\<\"brightener\"\>", "]"}], 
+   ",", "\<\"a computerized data system to provide brokers with price \
+quotations for securities traded over the counter\"\>", 
+   ",", "\<\"lessen or to try to lessen the seriousness or extent of\"\>", 
+   ",", "\<\"a series of (usually metal) rings or links fitted into one \
+another to make a flexible ligament\"\>", 
+   ",", "\<\"a thermosetting plastic used as electric insulators and for \
+making plastic ware and telephone receivers etc.\"\>", 
+   ",", "\<\"lacking opportunities for development or advancement\"\>", 
+   ",", "\<\"give up, such as power, as of monarchs and emperors, or duties \
+and obligations\"\>", 
+   ",", "\<\"a contestant who reaches the final stages of a competition\"\>", 
+   ",", "\<\"the role of the head of a government department\"\>", 
+   ",", "\<\"the defensive position on an ice hockey or soccer or lacrosse \
+team who stands in front of the goal and tries to prevent opposing players \
+from scoring\"\>", 
+   ",", "\<\"a depository (a room or building) where wealth and precious \
+objects can be kept safely\"\>", ",", 
+   RowBox[{"getDefinition", "[", "\<\"Dick\"\>", "]"}], 
+   ",", "\<\"tenaciously unwilling or marked by tenacious unwillingness to \
+yield\"\>", 
+   ",", "\<\"a hole through which you put your arm and where a sleeve can be \
+attached\"\>", ",", 
+   RowBox[{"getDefinition", "[", "\<\"tryingly\"\>", "]"}], 
+   ",", "\<\"pierce with a spear\"\>", 
+   ",", "\<\"earlier in time; previously\"\>", 
+   ",", "\<\"a facility where things can be deposited for storage or \
+safekeeping\"\>", ",", "\<\"a native or inhabitant of Poland\"\>", 
+   ",", "\<\"give false or misleading information to\"\>", 
+   ",", "\<\"informal terms for a (young) woman\"\>", 
+   ",", "\<\"characterized by oppressive heat and humidity\"\>", 
+   ",", "\<\"a slight wetness\"\>", 
+   ",", "\<\"freight car without permanent sides or roof\"\>", 
+   ",", "\<\"show off\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.631954850640625*^9, 3.631954894734375*^9, {3.63195493378125*^9, 
+   3.631954955140625*^9}, {3.631955138328125*^9, 3.63195514440625*^9}, {
+   3.631955194765625*^9, 3.63195521059375*^9}, {3.63195532615625*^9, 
+   3.631955494359375*^9}}]
+}, Open  ]]
+},
+WindowSize->{1440, 756},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September 9, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 1457, 38, 114, "Input"],
+Cell[2039, 62, 377, 5, 46, "Output"]
+}, Open  ]],
+Cell[2431, 70, 186, 4, 28, "Input"],
+Cell[CellGroupData[{
+Cell[2642, 78, 600, 14, 28, "Input"],
+Cell[3245, 94, 2787, 49, 250, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
