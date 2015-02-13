@@ -14,6 +14,7 @@ class CRecord:
         self.board = [['-' for x in range(m_size)] for x in range(m_size)]
         self.dirFlag = [[0 for x in range(m_size)] for x in range(m_size)]
         self.wordpool = m_wordpool
+        self.items = []
 
 def GetRandomSort():
     t = [True,False]
@@ -33,11 +34,40 @@ def ShowResult(record):
         output += "\n"
     print output
 
+def GetBiad(board):
+    x = 0
+    y = 0
+    while True:
+        for j in range(BOARD_SIZE):
+            if board[x][j] != '-':
+                break
+        else:
+            x += 1
+            continue
+        break
+    while True:
+        for j in range(BOARD_SIZE):
+            if board[j][y] != '-':
+                break
+        else:
+            y += 1
+            continue
+        break
+    return [x,y]
+
+def ExportResult(record):
+    [x,y] = GetBiad(record.board)
+    fid = open('result.txt','w')
+    for item in record.items:
+        fid.write('%s %d %d %s\n'%(item[0],item[1]-x,item[2]-y,('-' if item[3] else '|')))
+    fid.close()
+
 def FindPuzzle(record):
     global CurPuzzleNum
     global MaxPuzzleNum
     CurPuzzleNum += 1
     ShowResult(record)
+    ExportResult(record)
     if CurPuzzleNum == MaxPuzzleNum:
         sys.exit(0)
 
@@ -49,6 +79,7 @@ def SetBoard(record, word, i, j, IsRow):
         record_copy.dirFlag[ci][cj] |= (0x01 if IsRow else 0x02)
         record_copy.board[ci][cj] = ch
         record_copy.indexTable[ord(ch)-ord('a')].add((ci,cj))
+    record_copy.items.append([word,i,j,IsRow])
     if 0 == len(record_copy.wordpool):
         FindPuzzle(record_copy)
     return record_copy
