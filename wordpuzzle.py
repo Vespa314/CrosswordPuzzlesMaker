@@ -4,7 +4,7 @@ wordstring = "slewing,stencil,stinky,reverts,partly,courted,cuffed,crimes,fool,m
 
 WORDPOOL = wordstring.split(',')
 random.shuffle(WORDPOOL)
-BOARD_SIZE = 50
+BOARD_SIZE = 21
 MaxPuzzleNum = 1
 CurPuzzleNum = 0
 
@@ -59,7 +59,7 @@ def ExportResult(record):
     [x,y] = GetBiad(record.board)
     fid = open('result.txt','w')
     for item in record.items:
-        fid.write('%s %d %d %s\n'%(item[0],item[1]-x,item[2]-y,('-' if item[3] else '|')))
+        fid.write('%s %d %d %s\n'%(item[0],item[1]-x+1,item[2]-y+1,('-' if item[3] else '|')))
     fid.close()
 
 def FindPuzzle(record):
@@ -118,6 +118,11 @@ def Calculate(record, curWord, i, j, isrow):
         for word in record.wordpool:
             Iter(copy.deepcopy(record_t), word)
 
+def RandomSort(l):
+    random.shuffle(l)
+    for i in l:
+        yield i
+
 def Iter(record, curWord):
     global WORDPOOL
     global BOARD_SIZE
@@ -127,7 +132,7 @@ def Iter(record, curWord):
             Calculate(record, curWord, (BOARD_SIZE-len(curWord)*(not isrow))//2, (BOARD_SIZE-len(curWord)*isrow)//2, isrow)
     else:
         for (idx, ch) in enumerate(curWord):
-            for pos in record.indexTable[ord(ch)-ord('a')]:
+            for pos in RandomSort(list(record.indexTable[ord(ch)-ord('a')])):
                 for isrow in GetRandomSort():
                     Calculate(record, curWord, pos[0]-idx*(not isrow), pos[1]-idx*isrow, isrow)
 
