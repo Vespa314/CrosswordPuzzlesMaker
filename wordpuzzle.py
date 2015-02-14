@@ -1,10 +1,10 @@
 import copy,sys,random
 
-wordstring = "slewing,stencil,stinky,reverts,partly,courted,cuffed,crimes,fool,medley,revolve,comedic,poorboy,sevens,casual,lactate,puce,shebang,condors,blooped,shamans,gramme,rugs,guesser,decks,moses,sissier,fans,packet,titers,space,gator"
+wordstring = "buckles,killed,rubato,collect,woodier,potluck,daubers,bloom,learned,honchos,euro,wisp,hexes,earl,mass,flanged,wads,hoods,cravens,tocsins,frown,satori,gasping,tritium,finesse,macho,sharked,torsion,serest,easels,layers,ganging,amuses,rusty,encored,ditties,wombs,unzips,subset,viewed,galls,gambles,gnostic,trots,avidly,loosely,sprint,gobs,dropsy,timothy,gowning,raged,cankers,fetus,thyself,portico,muckier,daring,only,chewy,colors,person,twinkly,chumps,filming,insofar,spore,remind,despot,soother,whiles,vastly,sprouts,bicycle,users,galling,clear,keener,baling,giro,bestows,termite,decking,tankers,gerunds,boxes,news,peso,outlay,theory,repulse,bocks,junks,dopers,icicle,accrue,fatter,flower,shank,keepers"
 
 WORDPOOL = wordstring.split(',')
 random.shuffle(WORDPOOL)
-BOARD_SIZE = 21
+BOARD_SIZE = 33
 MaxPuzzleNum = 1
 CurPuzzleNum = 0
 
@@ -108,7 +108,11 @@ def ValidCheck(record, word, i, j, IsRow):
         if record.board[ci][cj] == '-':
             if IsRow and ci-1 >= 0 and record.board[ci-1][cj] != '-' and record.dirFlag[ci-1][cj] & 0x02:
                 return False
+            if IsRow and ci+1 < BOARD_SIZE and record.board[ci+1][cj] != '-' and record.dirFlag[ci+1][cj] & 0x02:
+                return False
             if not IsRow and cj-1 >= 0 and record.board[ci][cj-1] != '-' and record.dirFlag[ci][cj-1] & 0x01:
+                return False
+            if not IsRow and cj+1 < BOARD_SIZE and record.board[ci][cj+1] != '-' and record.dirFlag[ci][cj+1] & 0x01:
                 return False
     return True
 
