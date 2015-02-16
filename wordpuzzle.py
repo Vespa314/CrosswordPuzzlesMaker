@@ -5,8 +5,6 @@ wordstring = "buckles,killed,rubato,collect,woodier,potluck,daubers,bloom,learne
 WORDPOOL = wordstring.split(',')
 random.shuffle(WORDPOOL)
 BOARD_SIZE = 33
-MaxPuzzleNum = 1
-CurPuzzleNum = 0
 
 class CRecord:
     def __init__(self, m_size,m_wordpool):
@@ -16,10 +14,6 @@ class CRecord:
         self.wordpool = m_wordpool
         self.items = []
 
-def GetRandomSort():
-    t = [True,False]
-    random.shuffle(t)
-    return t
 
 def ShowResult(record):
     output = ""
@@ -63,13 +57,9 @@ def ExportResult(record):
     fid.close()
 
 def FindPuzzle(record):
-    global CurPuzzleNum
-    global MaxPuzzleNum
-    CurPuzzleNum += 1
     ShowResult(record)
     ExportResult(record)
-    if CurPuzzleNum == MaxPuzzleNum:
-        sys.exit(0)
+    sys.exit(0)
 
 def SetBoard(record, word, i, j, IsRow):
     record_copy = copy.deepcopy(record)
@@ -132,12 +122,12 @@ def Iter(record, curWord):
     global BOARD_SIZE
     record.wordpool.remove(curWord)
     if len(record.wordpool) == len(WORDPOOL)-1:
-        for isrow in GetRandomSort():
+        for isrow in RandomSort([True,False]):
             Calculate(record, curWord, (BOARD_SIZE-len(curWord)*(not isrow))//2, (BOARD_SIZE-len(curWord)*isrow)//2, isrow)
     else:
         for (idx, ch) in enumerate(curWord):
             for pos in RandomSort(list(record.indexTable[ord(ch)-ord('a')])):
-                for isrow in GetRandomSort():
+                for isrow in RandomSort([True,False]):
                     Calculate(record, curWord, pos[0]-idx*(not isrow), pos[1]-idx*isrow, isrow)
 
 if __name__ == "__main__":
